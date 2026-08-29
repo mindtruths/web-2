@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mindtruths — Personalized mental health support, in real time</title>
+<meta name="description" content="Mindtruths learns your patterns with precision and works with your own behaviors, thoughts, and habits to promote your mental health. Clinically validated methods, carried into everyday support.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --brand-teal: #376539;
+    --brand-teal-deep: #376539;
+    --brand-teal-deeper: #224d25;
+    --brand-teal-wash: #e0ede0;
+    --brand-near-black: #3a1e2e;
+
+    --dtx-navy: var(--brand-near-black);
+    --dtx-navy-soft: #9a79a8;
+    --dtx-navy-wash: #dfd8dc;
+
+    --core-wash: #e0ede0;
+
+    --neutral-0: #fefaf5;
+    --neutral-50: #f8f3ec;
+    --neutral-100: #e8dfd4;
+    --neutral-200: #d9cfc3;
+    --neutral-300: #c2b3a8;
+    --neutral-400: #a3948d;
+    --neutral-500: #73686e;
+    --neutral-600: #53464d;
+    --neutral-700: #472c39;
+    --neutral-800: #402437;
+    --neutral-900: #3a1e2e;
+
+    --color-bg: var(--neutral-0);
+    --color-bg-subtle: var(--neutral-50);
+    --color-surface: var(--neutral-0);
+    --color-surface-raised: var(--neutral-50);
+    --color-surface-brand: var(--brand-teal-wash);
+
+    --color-text: var(--brand-near-black);
+    --color-text-muted: var(--neutral-600);
+    --color-text-soft: var(--neutral-500);
+    --color-text-inverse: var(--neutral-0);
+    --color-text-brand: var(--brand-teal-deep);
+
+    --color-border: var(--neutral-100);
+    --color-border-strong: var(--neutral-200);
+
+    --color-action: var(--brand-teal);
+    --color-action-hover: var(--brand-teal-deeper);
+    --color-action-contrast: var(--neutral-0);
+
+    --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --text-xs: 0.8125rem;
+    --text-sm: 0.9375rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.3125rem;
+    --text-2xl: clamp(1.5rem, 1.3rem + 0.9vw, 1.875rem);
+    --text-3xl: clamp(1.875rem, 1.55rem + 1.5vw, 2.5rem);
+    --text-4xl: clamp(2.25rem, 1.7rem + 2.6vw, 3.25rem);
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
+
+    --leading-tight: 1.1;
+    --leading-snug: 1.3;
+    --leading-normal: 1.6;
+
+    --tracking-tight: -0.025em;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+    --space-9: 4rem;
+    --space-10: 5rem;
+
+    --container-max: 68rem;
+    --container-narrow: 42rem;
+    --container-gutter: var(--space-5);
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+
+    --shadow-sm: 0 1px 2px rgba(58, 30, 46, 0.06);
+    --shadow-md: 0 6px 20px rgba(58, 30, 46, 0.08);
+
+    --transition-fast: 120ms ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --color-bg: #1d141a;
+      --color-bg-subtle: #241a22;
+      --color-surface: #241a22;
+      --color-surface-raised: #2c2029;
+      --color-surface-brand: rgba(126, 164, 127, 0.14);
+
+      --color-text: #f4ece7;
+      --color-text-muted: #c9bcc2;
+      --color-text-soft: #9c8e94;
+      --color-text-inverse: #1d141a;
+      --color-text-brand: #8fb98d;
+
+      --color-border: #362a32;
+      --color-border-strong: #47383f;
+
+      --color-action: #7ea47f;
+      --color-action-hover: #aac7aa;
+      --color-action-contrast: #1d141a;
+
+      --brand-teal: #7ea47f;
+      --brand-teal-deep: #8fb98d;
+      --brand-teal-wash: rgba(126, 164, 127, 0.14);
+
+      --dtx-navy: var(--color-text);
+      --dtx-navy-soft: #d8b9de;
+      --dtx-navy-wash: rgba(125, 90, 140, 0.18);
+
+      --core-wash: rgba(126, 164, 127, 0.16);
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --color-bg: #1d141a;
+    --color-bg-subtle: #241a22;
+    --color-surface: #241a22;
+    --color-surface-raised: #2c2029;
+    --color-surface-brand: rgba(126, 164, 127, 0.14);
+
+    --color-text: #f4ece7;
+    --color-text-muted: #c9bcc2;
+    --color-text-soft: #9c8e94;
+    --color-text-inverse: #1d141a;
+    --color-text-brand: #8fb98d;
+
+    --color-border: #362a32;
+    --color-border-strong: #47383f;
+
+    --color-action: #7ea47f;
+    --color-action-hover: #aac7aa;
+    --color-action-contrast: #1d141a;
+
+    --brand-teal: #7ea47f;
+    --brand-teal-deep: #8fb98d;
+    --brand-teal-wash: rgba(126, 164, 127, 0.14);
+
+    --dtx-navy: #d19a7e;
+    --dtx-navy-soft: #ddb096;
+    --dtx-navy-wash: rgba(158, 95, 72, 0.18);
+
+    --core-wash: rgba(126, 164, 127, 0.16);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, p { margin: 0; }
+  h1, h2, h3, h4 {
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--weight-bold);
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  a { color: var(--color-text-brand); text-decoration: none; }
+  a:hover { color: var(--color-action-hover); }
+  button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+  .container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-gutter);
+  }
+  .container--narrow { max-width: var(--container-narrow); }
+
+  .eyebrow {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-brand);
+  }
+
+  /* ---------------- header ---------------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+  .wordmark { display: inline-flex; align-items: center; gap: var(--space-2); font-size: 1.375rem; white-space: nowrap; }
+  .wordmark__mark { width: 24px; height: 24px; flex-shrink: 0; }
+  .wordmark__mind { font-weight: var(--weight-semibold); color: var(--color-text); }
+  .wordmark__truths { font-weight: var(--weight-regular); color: var(--brand-teal); }
+
+  .site-nav { display: flex; align-items: center; gap: var(--space-6); }
+  .site-nav__links { display: flex; gap: var(--space-5); }
+  .site-nav a.navlink {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-muted);
+    padding: var(--space-2) 0;
+    border-bottom: 2px solid transparent;
+  }
+  .site-nav a.navlink:hover { color: var(--color-text); }
+  .site-nav a.navlink.active { color: var(--color-text); border-bottom-color: var(--brand-teal); }
+  .nav-toggle { display: none; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .btn--primary { background: var(--color-action); color: var(--color-action-contrast); }
+  .btn--primary:hover { background: var(--color-action-hover); color: var(--color-action-contrast); }
+  .btn--quiet { background: transparent; color: var(--color-text-brand); border-color: var(--color-border-strong); }
+  .btn--quiet:hover { border-color: var(--color-text-brand); color: var(--color-action-hover); }
+  .btn--lg { padding: 0.85rem 1.6rem; font-size: var(--text-base); }
+
+  /* ---------------- pages / routing ---------------- */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  section { padding-block: var(--space-9); }
+  section + section { border-top: 1px solid var(--color-border); }
+  .section-head { max-width: 40rem; margin-bottom: var(--space-7); }
+  .section-head h2 { font-size: var(--text-3xl); margin-top: var(--space-3); }
+  .section-head p { color: var(--color-text-muted); font-size: var(--text-lg); margin-top: var(--space-3); }
+
+  /* ---------------- hero ---------------- */
+  .hero { position: relative; overflow: hidden; padding-block: var(--space-10) var(--space-9); }
+  .hero__glow {
+    position: absolute;
+    top: -12rem; right: -8rem;
+    width: 32rem; height: 32rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--brand-teal-wash) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero__inner { position: relative; max-width: 42rem; }
+  .hero h1 { font-size: var(--text-4xl); font-weight: var(--weight-extrabold); letter-spacing: -0.03em; margin-top: var(--space-4); }
+  .hero__sub { font-size: var(--text-lg); color: var(--color-text-muted); margin-top: var(--space-5); max-width: 36rem; }
+  .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-7); align-items: center; }
+  .hero__ctas .btn--quiet { border-color: transparent; padding-left: 0; padding-right: 0; }
+
+  .hero__ways {
+    display: block;
+    margin-top: var(--space-7);
+    max-width: 34rem;
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .hero__ways:hover { border-color: var(--brand-teal); box-shadow: var(--shadow-md); color: inherit; }
+  .hero__ways-eyebrow {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-3);
+  }
+  .hero__ways-row { display: flex; gap: var(--space-3); }
+  .hero__ways-col { flex: 1; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); }
+  .hero__ways-col--core { background: var(--core-wash); }
+  .hero__ways-col--joined { background: var(--dtx-navy-wash); }
+  .hero__ways-label {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .hero__ways-col--core .hero__ways-label { color: var(--color-text-brand); }
+  .hero__ways-col--joined .hero__ways-label { color: var(--dtx-navy); }
+  .hero__ways-col p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.4; }
+  .hero__ways-link {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-brand);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  @media (max-width: 480px) {
+    .hero__ways-row { flex-direction: column; gap: var(--space-4); }
+  }
+
+  /* ---------------- feature cards ---------------- */
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  .card-grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .feature-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
+  .feature-card__icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface-brand);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brand-teal-deep);
+    margin-bottom: var(--space-4);
+  }
+  .feature-card h3 { font-size: var(--text-lg); }
+  .feature-card p { color: var(--color-text-muted); margin-top: var(--space-2); font-size: var(--text-sm); }
+
+  /* ---------------- prose section ---------------- */
+  .prose-block { max-width: var(--container-narrow); }
+  .prose-block p + p { margin-top: var(--space-4); }
+  .prose-block p { font-size: var(--text-lg); color: var(--color-text-muted); line-height: var(--leading-normal); }
+  .prose-block strong { color: var(--color-text); font-weight: var(--weight-semibold); }
+
+  /* ---------------- two-way cards ---------------- */
+  .way-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .way-card {
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    display: flex; flex-direction: column; gap: var(--space-4);
+  }
+  .way-card--core { background: var(--core-wash); border: 1px solid var(--color-border); }
+  .way-card--joined { background: var(--dtx-navy-wash); border: 1px solid var(--color-border); }
+  .way-card__eyebrow { font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: 0.08em; text-transform: uppercase; }
+  .way-card--core .way-card__eyebrow { color: var(--color-text-brand); }
+  .way-card--joined .way-card__eyebrow { color: var(--dtx-navy); }
+  .way-card h3 { font-size: var(--text-2xl); }
+  .way-card__facts { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-1); }
+  .way-card__facts span {
+    font-size: var(--text-xs); font-weight: var(--weight-medium);
+    padding: 0.25rem 0.6rem; border-radius: 999px;
+  }
+  .way-card--core .way-card__facts span { background: rgba(29, 158, 117, 0.14); color: var(--color-text-brand); }
+  .way-card--joined .way-card__facts span { background: rgba(125, 90, 140, 0.14); color: var(--dtx-navy); }
+  .way-card p.body { font-size: var(--text-base); color: var(--color-text-muted); }
+
+  /* ---------------- steps (how it works) ---------------- */
+  .steps { display: flex; flex-direction: column; gap: 0; max-width: var(--container-narrow); }
+  .step { display: flex; gap: var(--space-5); padding-block: var(--space-5); position: relative; }
+  .step + .step { border-top: 1px solid var(--color-border); }
+  .step__num {
+    flex-shrink: 0;
+    width: 2.25rem; height: 2.25rem;
+    border-radius: 50%;
+    background: var(--color-surface-brand);
+    color: var(--color-text-brand);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-sm);
+  }
+  .step h3 { font-size: var(--text-lg); }
+  .step p { color: var(--color-text-muted); margin-top: var(--space-2); font-size: var(--text-base); }
+
+  /* ---------------- footer ---------------- */
+  .site-footer { border-top: 1px solid var(--color-border); padding-block: var(--space-8) var(--space-6); }
+  .site-footer .wordmark { font-size: 1.1rem; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(2, 1fr);
+    gap: var(--space-6);
+    padding-bottom: var(--space-7);
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: var(--space-3); max-width: 20rem; }
+  .footer-tagline { font-size: var(--text-sm); color: var(--color-text-soft); }
+  .footer-social { display: flex; gap: var(--space-3); margin-top: var(--space-1); }
+  .footer-social a { color: var(--color-text-soft); display: inline-flex; }
+  .footer-social a:hover { color: var(--color-text-brand); }
+  .footer-col { display: flex; flex-direction: column; gap: var(--space-3); }
+  .footer-col__title { font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-soft); }
+  .footer-col a { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .footer-col a:hover { color: var(--color-text-brand); }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+  .footer-note { font-size: var(--text-xs); color: var(--color-text-soft); max-width: 40rem; line-height: var(--leading-normal); }
+  .footer-note strong { color: var(--color-text-muted); }
+  .footer-copyright { font-size: var(--text-xs); color: var(--color-text-soft); white-space: nowrap; }
+  @media (max-width: 860px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { max-width: none; grid-column: 1 / -1; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  .cta-band {
+    background: #283f28;
+    color: #fefaf5;
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    text-align: center;
+    box-shadow: 0 16px 40px rgba(40, 63, 40, 0.35), 0 4px 12px rgba(40, 63, 40, 0.25);
+  }
+  .cta-band h2 { font-size: var(--text-2xl); color: #fefaf5; }
+  .cta-band p { color: rgba(254,250,245,0.82); margin-top: var(--space-3); }
+  .cta-band .btn--primary { background: #fefaf5; color: #224d25; }
+  .cta-band .btn--primary:hover { background: #f8f3ec; color: #224d25; }
+  .cta-band .btn--quiet { color: #ffffff; border-color: rgba(255,255,255,0.4); }
+  .cta-band .btn--quiet:hover { border-color: #ffffff; color: #ffffff; }
+  .cta-band .btn-row { display: flex; justify-content: center; gap: var(--space-4); margin-top: var(--space-6); flex-wrap: wrap; }
+
+  /* ---------------- request access ---------------- */
+  .request-access-disclaimer {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    margin-top: var(--space-4);
+    max-width: 34rem;
+  }
+
+  .request-form-card {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+  }
+  .form-field { margin-bottom: var(--space-6); }
+  .form-field label {
+    display: block;
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+  .form-field__tag { font-weight: var(--weight-regular); color: var(--color-text-soft); }
+  .form-field__hint { font-size: var(--text-sm); color: var(--color-text-muted); margin: -0.25rem 0 var(--space-2); }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    font: inherit;
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 0.9rem;
+  }
+  .form-field textarea { resize: vertical; }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: 2px solid var(--brand-teal);
+    outline-offset: 1px;
+    border-color: var(--brand-teal);
+  }
+  .request-form-confirm {
+    background: var(--brand-teal-wash);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    text-align: center;
+  }
+  .request-form-confirm h3 { font-size: var(--text-xl); color: var(--color-text-brand); }
+  .request-form-confirm p { color: var(--color-text-muted); margin-top: var(--space-3); }
+
+  @media (max-width: 960px) {
+    .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .way-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .site-nav__links { display: none; }
+    .hero h1 { font-size: var(--text-3xl); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#/" class="wordmark" data-route="/">
+      <svg class="wordmark__mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="100" cy="100" r="100" fill="var(--brand-teal)"/>
+        <g stroke="#ffffff" stroke-width="11" stroke-linecap="round">
+          <line x1="100" y1="0" x2="176.6" y2="164.3"/>
+          <line x1="100" y1="0" x2="150.0" y2="186.6"/>
+          <line x1="100" y1="0" x2="100.0" y2="200.0"/>
+          <line x1="100" y1="0" x2="50.0" y2="186.6"/>
+          <line x1="100" y1="0" x2="23.4" y2="164.3"/>
+        </g>
+      </svg>
+      <span><span class="wordmark__mind">mind</span><span class="wordmark__truths">truths</span></span>
+    </a>
+    <nav class="site-nav">
+      <div class="site-nav__links">
+        <a href="#/" class="navlink" data-route="/">Home</a>
+        <a href="#/how-it-works" class="navlink" data-route="/how-it-works">How it works</a>
+        <a href="#/get-started" class="navlink" data-route="/get-started">Get started</a>
+        <a href="#/for-clinicians" class="navlink" data-route="/for-clinicians">For clinicians</a>
+      </div>
+      <a href="#/get-notified" class="btn btn--primary">Get notified</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HOME ================= -->
+  <div class="page" id="page-/">
+    <section class="hero">
+      <div class="hero__glow"></div>
+      <div class="container">
+        <div class="hero__inner">
+          <div class="eyebrow">Mental and holistic health support</div>
+          <h1>Personalized support, in real time, in real life.</h1>
+          <p class="hero__sub">Mindtruths learns your patterns with precision and works with your own behaviors, thoughts, and habits to promote your mental health. We carry clinically validated methods into everyday support.</p>
+          <a href="#/get-started" class="hero__ways">
+            <span class="hero__ways-eyebrow">Two ways in</span>
+            <div class="hero__ways-row">
+              <div class="hero__ways-col hero__ways-col--core">
+                <span class="hero__ways-label">Core</span>
+                <p>On your own. No prescription, no waitlist. Start today.</p>
+              </div>
+              <div class="hero__ways-col hero__ways-col--joined">
+                <span class="hero__ways-label">Joined</span>
+                <p>With your care provider. Connected to the care you're already getting.</p>
+              </div>
+            </div>
+            <span class="hero__ways-link">Get started →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why Mindtruths</div>
+          <h2>Most advice is generic. Mindtruths is different.</h2>
+          <p>It learns what's actually happening in your day and responds in real time. Grounded in science. Tailored to your needs, lifestyle, abilities, and schedule.</p>
+        </div>
+        <div class="card-grid card-grid--4">
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M4.67,28l6.39-12,7.3,6.49a2,2,0,0,0,1.7.47,2,2,0,0,0,1.42-1.07L27,10.9,25.18,10,19.69,21l-7.3-6.49A2,2,0,0,0,10.71,14a2,2,0,0,0-1.42,1L4,25V2H2V28a2,2,0,0,0,2,2H30V28Z"/></svg>
+            </div>
+            <h3>Insights about your patterns</h3>
+            <p>Learns how your mood, behavior, and habits actually connect to find patterns that are specific to you.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16,30A14,14,0,1,1,30,16,14,14,0,0,1,16,30ZM16,4A12,12,0,1,0,28,16,12,12,0,0,0,16,4Z"/><path d="M20.59 22 15 16.41 15 7 17 7 17 15.58 22 20.59 20.59 22z"/></svg>
+            </div>
+            <h3>What you need, when you need it</h3>
+            <p>Gives personalized suggestions for things you can actually do, exactly in the moments when it helps.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M30.94,15.66A16.69,16.69,0,0,0,16,5,16.69,16.69,0,0,0,1.06,15.66a1,1,0,0,0,0,.68A16.69,16.69,0,0,0,16,27,16.69,16.69,0,0,0,30.94,16.34,1,1,0,0,0,30.94,15.66ZM16,25c-5.3,0-10.9-3.93-12.93-9C5.1,10.93,10.7,7,16,7s10.9,3.93,12.93,9C26.9,21.07,21.3,25,16,25Z"/><path d="M16,10a6,6,0,1,0,6,6A6,6,0,0,0,16,10Zm0,10a4,4,0,1,1,4-4A4,4,0,0,1,16,20Z"/></svg>
+            </div>
+            <h3>Clarity and understanding</h3>
+            <p>Shows exactly what it's learned, what it's working on, and why it suggests what it does.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M4,2H2V28a2,2,0,0,0,2,2H30V28H4V25H26V17H4V13H18V5H4ZM24,19v4H4V19ZM16,7v4H4V7Z"/></svg>
+            </div>
+            <h3>Visible progress</h3>
+            <p>Tracks your progress across areas of your life that are important to you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="eyebrow">Grounded in science</div>
+          <h2>Rooted in evidence, built with the people who know it best.</h2>
+          <p>Mindtruths is fully rooted in clinical best-practice and <strong>evidence-based</strong> approaches, developed alongside experienced scientists, licensed clinicians, and real users.</p>
+          <p style="margin-top:var(--space-4);"><a href="#/how-it-works" class="btn btn--quiet">See how it works →</a></p>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <div class="page" id="page-/how-it-works">
+    <section style="padding-top: var(--space-9);">
+      <div class="container">
+        <div class="eyebrow">How it works</div>
+        <h1 style="font-size:var(--text-4xl); margin-top:var(--space-4); max-width:38rem;">Built from the science. Personalized for you.</h1>
+        <div class="prose-block" style="margin-top:var(--space-6);">
+          <p>We started with the research: which behavioral and environmental factors keep depressive symptoms going, and which ones help build well-being. From there, we drew on gold-standard, well-validated treatments that target exactly those factors.</p>
+          <p>The result is a system that turns clinical science into suggestions that work on your schedule, for your life.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="steps">
+          <div class="step">
+            <div class="step__num">1</div>
+            <div>
+              <h3>Start with the research</h3>
+              <p>We dug into what's known about the behavioral and environmental factors that maintain depressive symptoms, and the ones that help promote well-being.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">2</div>
+            <div>
+              <h3>Draw from clinical best practice</h3>
+              <p>We looked for gold-standard treatment approaches that target those specific factors and have been proven to work, and translated them into brief, actionable suggestions.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">3</div>
+            <div>
+              <h3>Personalize it to you</h3>
+              <p>We learn your own patterns and abilities and use this to determine which suggestions might be most helpful for you.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">4</div>
+            <div>
+              <h3>Deliver it in real time</h3>
+              <p>We give you suggestions at the moments when you might most benefit from them throughout your day, taking into consideration your schedule and lifestyle.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">5</div>
+            <div>
+              <h3>Track what's working</h3>
+              <p>We track your progress using standardized measures that clinicians and scientists already use, so change is validated and visible.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step__num">6</div>
+            <div>
+              <h3>Show you everything</h3>
+              <p>We show your functioning across areas of your life and explain why we chose the suggestions we did, so you can understand your own patterns and see the whole picture.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-band">
+          <h2>See it for yourself.</h2>
+          <p>No prescription. No waitlist. Direct access.</p>
+          <div class="btn-row">
+            <a href="#/get-started" class="btn btn--primary btn--lg">Get started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= GET STARTED ================= -->
+  <div class="page" id="page-/get-started">
+    <section style="padding-top: var(--space-9);">
+      <div class="container">
+        <div class="eyebrow">Two ways to use Mindtruths</div>
+        <h1 style="font-size:var(--text-4xl); margin-top:var(--space-4); max-width:36rem;">We meet you where you are.</h1>
+        <p style="font-size:var(--text-lg); color:var(--color-text-muted); margin-top:var(--space-4); max-width:36rem;">You can use Mindtruths on your own or with your care provider. Same science, same suggestions, same personalization. Choose a path to join.</p>
+        <div class="way-grid" style="margin-top:var(--space-7);">
+          <div class="way-card way-card--core" style="padding: var(--space-8);">
+            <div class="way-card__eyebrow">Core</div>
+            <h3 style="font-size:var(--text-3xl);">On your own</h3>
+            <div class="way-card__facts">
+              <span>No prescription</span><span>No waitlist</span><span>No hook</span>
+            </div>
+            <p class="body" style="font-size:var(--text-base);">Core is fully self-guided. You get the same personalized prompts, built from the same research and frameworks, without needing a clinician account. Support for people managing depression, on your own terms and at your own pace.</p>
+            <p class="body" style="font-size:var(--text-base);">If your answers suggest you need more support than Core can offer, we'll tell you, and point you toward it.</p>
+            <a href="#/get-notified" class="btn btn--primary" style="align-self:flex-start; margin-top:auto;">Get notified</a>
+          </div>
+          <div class="way-card way-card--joined" style="padding: var(--space-8);">
+            <div class="way-card__eyebrow">Joined</div>
+            <h3 style="font-size:var(--text-3xl);">With your care provider</h3>
+            <div class="way-card__facts">
+              <span>Clinician-linked</span><span>Care between sessions</span>
+            </div>
+            <p class="body" style="font-size:var(--text-base);">Joined connects Mindtruths to the care you're already getting. Your clinician sees your patterns between visits and can shape what Mindtruths focuses on, so your support and your sessions move together.</p>
+            <a href="#/for-clinicians" class="btn btn--quiet" style="align-self:flex-start; margin-top:auto; color:var(--dtx-navy); border-color:var(--dtx-navy);">Ask your provider about Joined →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= FOR CLINICIANS ================= -->
+  <div class="page" id="page-/for-clinicians">
+    <section style="padding-top: var(--space-9);">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why choose Joined</div>
+          <h2>The week your patient lives in, visible to you.</h2>
+          <p>Mindtruths gives your patient support during the other 167 hours of the week outside of your sessions. Invite a patient into Joined from your dashboard to integrate their experience with your care and gain insight. Here's what that changes about what you can see and do.</p>
+        </div>
+        <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M4.67,28l6.39-12,7.3,6.49a2,2,0,0,0,1.7.47,2,2,0,0,0,1.42-1.07L27,10.9,25.18,10,19.69,21l-7.3-6.49A2,2,0,0,0,10.71,14a2,2,0,0,0-1.42,1L4,25V2H2V28a2,2,0,0,0,2,2H30V28Z"/></svg>
+            </div>
+            <h3>Data from their actual week</h3>
+            <p>Mindtruths collects information on mood, behaviors, and functioning throughout the 167 hours outside the session, not just what they remember to bring up.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M23,16a7,7,0,0,0-4.18,1.39L14.6,13.17A6.86,6.86,0,0,0,16,9a7,7,0,1,0-2.81,5.59l4.21,4.22A7,7,0,1,0,23,16ZM4,9a5,5,0,1,1,5,5A5,5,0,0,1,4,9Z"/></svg>
+            </div>
+            <h3>Support between sessions</h3>
+            <p>From their data, Mindtruths identifies which behavioral pathways might be load-bearing right now, and delivers just-in-time adaptive interventions (JITAIs) directly to the patient at the moments they're likely to matter.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M30,8h-4.1c-0.5-2.3-2.5-4-4.9-4s-4.4,1.7-4.9,4H2v2h14.1c0.5,2.3,2.5,4,4.9,4s4.4-1.7,4.9-4H30V8z M21,12c-1.7,0-3-1.3-3-3	s1.3-3,3-3s3,1.3,3,3S22.7,12,21,12z"/><path d="M2,24h4.1c0.5,2.3,2.5,4,4.9,4s4.4-1.7,4.9-4H30v-2H15.9c-0.5-2.3-2.5-4-4.9-4s-4.4,1.7-4.9,4H2V24z M11,20c1.7,0,3,1.3,3,3	s-1.3,3-3,3s-3-1.3-3-3S9.3,20,11,20z"/></svg>
+            </div>
+            <h3>You select the targets</h3>
+            <p>Choose or override what Mindtruths is working on for each patient. It drives the day-to-day arc; you hold the wheel.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M30.94,15.66A16.69,16.69,0,0,0,16,5,16.69,16.69,0,0,0,1.06,15.66a1,1,0,0,0,0,.68A16.69,16.69,0,0,0,16,27,16.69,16.69,0,0,0,30.94,16.34,1,1,0,0,0,30.94,15.66ZM16,25c-5.3,0-10.9-3.93-12.93-9C5.1,10.93,10.7,7,16,7s10.9,3.93,12.93,9C26.9,21.07,21.3,25,16,25Z"/><path d="M16,10a6,6,0,1,0,6,6A6,6,0,0,0,16,10Zm0,10a4,4,0,1,1,4-4A4,4,0,0,1,16,20Z"/></svg>
+            </div>
+            <h3>Full visibility into what they're seeing</h3>
+            <p>Your dashboard shows exactly which insights and suggestions are being surfaced to your patient, not just a summary of them.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M4,2H2V28a2,2,0,0,0,2,2H30V28H4V25H26V17H4V13H18V5H4ZM24,19v4H4V19ZM16,7v4H4V7Z"/></svg>
+            </div>
+            <h3>Progress on validated scales</h3>
+            <p>Track progress on validated assessment scales like the PHQ-9 and GAD-7, alongside the behavioral data underneath the score.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16,23a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,16,23Z"/><path d="M15 12H17V21H15z"/><path d="M29,30H3a1,1,0,0,1-.8872-1.4614l13-25a1,1,0,0,1,1.7744,0l13,25A1,1,0,0,1,29,30ZM4.6507,28H27.3493l.002-.0033L16.002,6.1714h-.004L4.6487,27.9967Z"/></svg>
+            </div>
+            <h3>Safety risks, flagged to you</h3>
+            <p>If a patient's responses raise a safety risk, you're alerted directly. Nothing about safety gets softened or held for later.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-band">
+          <h2>Ready to bring Mindtruths into your practice?</h2>
+          <p>Clinician access is invite-based. Send a request and an administrator will set up your account.</p>
+          <div class="btn-row">
+            <a href="#/request-access" class="btn btn--primary btn--lg">Request early access</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= REQUEST ACCESS ================= -->
+  <div class="page" id="page-/request-access">
+    <section style="padding-top: var(--space-9);">
+      <div class="container container--narrow">
+        <div class="eyebrow">For clinicians</div>
+        <h1 style="font-size:var(--text-4xl); margin-top:var(--space-4);">Request early access</h1>
+        <p style="font-size:var(--text-lg); color:var(--color-text-muted); margin-top:var(--space-4);">Clinician access is invite-based. Send this form and we will set up your account and send you an invite.</p>
+        <p class="request-access-disclaimer">This is the Joined tier, where a clinician is involved. Core is self-guided and needs no clinician account, so nothing here is required to use it.</p>
+        <p class="request-access-disclaimer">There is no self-service sign-up. Accounts are created by an administrator so that every clinician account is tied to a verified practice.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container container--narrow">
+        <div class="request-form-card">
+          <h2 style="font-size:var(--text-2xl); margin-bottom:var(--space-6);">Request an account</h2>
+          <form id="request-access-form" name="request-access" method="POST" data-netlify="true" netlify-honeypot="ra-hp">
+            <input type="hidden" name="form-name" value="request-access">
+            <p style="position:absolute; left:-9999px;" aria-hidden="true"><label>Leave this field empty <input name="ra-hp" tabindex="-1" autocomplete="off"></label></p>
+            <div class="form-field">
+              <label for="ra-name">Full name <span class="form-field__tag">(required)</span></label>
+              <input type="text" id="ra-name" name="name" required>
+            </div>
+            <div class="form-field">
+              <label for="ra-role">Professional role <span class="form-field__tag">(required)</span></label>
+              <select id="ra-role" name="role" required>
+                <option value="" selected disabled>Choose one</option>
+                <option value="clinician">Licensed clinician</option>
+                <option value="administrator">Practice administrator</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="ra-org">Practice or organization <span class="form-field__tag">(required)</span></label>
+              <input type="text" id="ra-org" name="org" required>
+            </div>
+            <div class="form-field">
+              <label for="ra-email">Work email <span class="form-field__tag">(required)</span></label>
+              <p class="form-field__hint">We reply to this address. Please use your work account.</p>
+              <input type="email" id="ra-email" name="email" required>
+            </div>
+            <div class="form-field">
+              <label for="ra-notes">Anything else we should know <span class="form-field__tag">(optional)</span></label>
+              <textarea id="ra-notes" name="notes" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg">Send request</button>
+          </form>
+          <div id="request-access-confirm" class="request-form-confirm" hidden>
+            <h3>Request sent</h3>
+            <p>Thanks — we'll review your request and follow up at the work email you entered.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= GET NOTIFIED ================= -->
+  <div class="page" id="page-/get-notified">
+    <section style="padding-top: var(--space-9);">
+      <div class="container container--narrow">
+        <div class="eyebrow">Coming soon</div>
+        <h1 style="font-size:var(--text-4xl); margin-top:var(--space-4);">Get notified when we launch</h1>
+        <p style="font-size:var(--text-lg); color:var(--color-text-muted); margin-top:var(--space-4);">Mindtruths is currently in development and will be available for download on the App Store and Google Play Store soon. Make sure to get notified when we launch.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container container--narrow">
+        <div class="request-form-card">
+          <h2 style="font-size:var(--text-2xl); margin-bottom:var(--space-6);">Join the list</h2>
+          <form id="get-notified-form" name="get-notified" method="POST" data-netlify="true" netlify-honeypot="gn-hp">
+            <input type="hidden" name="form-name" value="get-notified">
+            <p style="position:absolute; left:-9999px;" aria-hidden="true"><label>Leave this field empty <input name="gn-hp" tabindex="-1" autocomplete="off"></label></p>
+            <div class="form-field">
+              <label for="gn-email">Email <span class="form-field__tag">(required)</span></label>
+              <input type="email" id="gn-email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg">Notify me</button>
+          </form>
+          <div id="get-notified-confirm" class="request-form-confirm" hidden>
+            <h3>You're on the list</h3>
+            <p>We'll email you the moment Mindtruths is available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#/" class="wordmark" data-route="/">
+        <svg class="wordmark__mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="100" cy="100" r="100" fill="var(--brand-teal)"/>
+          <g stroke="#ffffff" stroke-width="11" stroke-linecap="round">
+            <line x1="100" y1="0" x2="176.6" y2="164.3"/>
+            <line x1="100" y1="0" x2="150.0" y2="186.6"/>
+            <line x1="100" y1="0" x2="100.0" y2="200.0"/>
+            <line x1="100" y1="0" x2="50.0" y2="186.6"/>
+            <line x1="100" y1="0" x2="23.4" y2="164.3"/>
+          </g>
+        </svg>
+        <span><span class="wordmark__mind">mind</span><span class="wordmark__truths">truths</span></span>
+      </a>
+      <p class="footer-tagline">Personalized support, in real time, in real life.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mindtruthscom" aria-label="Mindtruths on Instagram" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><circle cx="22.406" cy="9.594" r="1.44"/><path d="M16,9.8378A6.1622,6.1622,0,1,0,22.1622,16,6.1622,6.1622,0,0,0,16,9.8378ZM16,20a4,4,0,1,1,4-4A4,4,0,0,1,16,20Z"/><path d="M16,6.1622c3.2041,0,3.5837.0122,4.849.07a6.6418,6.6418,0,0,1,2.2283.4132,3.9748,3.9748,0,0,1,2.2774,2.2774,6.6418,6.6418,0,0,1,.4132,2.2283c.0577,1.2653.07,1.6449.07,4.849s-.0122,3.5837-.07,4.849a6.6418,6.6418,0,0,1-.4132,2.2283,3.9748,3.9748,0,0,1-2.2774,2.2774,6.6418,6.6418,0,0,1-2.2283.4132c-1.2652.0577-1.6446.07-4.849.07s-3.5838-.0122-4.849-.07a6.6418,6.6418,0,0,1-2.2283-.4132,3.9748,3.9748,0,0,1-2.2774-2.2774,6.6418,6.6418,0,0,1-.4132-2.2283c-.0577-1.2653-.07-1.6449-.07-4.849s.0122-3.5837.07-4.849a6.6418,6.6418,0,0,1,.4132-2.2283A3.9748,3.9748,0,0,1,8.9227,6.6453a6.6418,6.6418,0,0,1,2.2283-.4132c1.2653-.0577,1.6449-.07,4.849-.07M16,4c-3.259,0-3.6677.0138-4.9476.0722A8.8068,8.8068,0,0,0,8.14,4.63,6.1363,6.1363,0,0,0,4.63,8.14a8.8068,8.8068,0,0,0-.5578,2.9129C4.0138,12.3323,4,12.741,4,16s.0138,3.6677.0722,4.9476A8.8074,8.8074,0,0,0,4.63,23.8605a6.1363,6.1363,0,0,0,3.51,3.51,8.8068,8.8068,0,0,0,2.9129.5578C12.3323,27.9862,12.741,28,16,28s3.6677-.0138,4.9476-.0722a8.8074,8.8074,0,0,0,2.9129-.5578,6.1363,6.1363,0,0,0,3.51-3.51,8.8074,8.8074,0,0,0,.5578-2.9129C27.9862,19.6677,28,19.259,28,16s-.0138-3.6677-.0722-4.9476A8.8068,8.8068,0,0,0,27.37,8.14a6.1363,6.1363,0,0,0-3.51-3.5095,8.8074,8.8074,0,0,0-2.9129-.5578C19.6677,4.0138,19.259,4,16,4Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/mindtruths/" aria-label="Mindtruths on LinkedIn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M26.2,4H5.8C4.8,4,4,4.8,4,5.7v20.5c0,0.9,0.8,1.7,1.8,1.7h20.4c1,0,1.8-0.8,1.8-1.7V5.7C28,4.8,27.2,4,26.2,4z M11.1,24.4	H7.6V13h3.5V24.4z M9.4,11.4c-1.1,0-2.1-0.9-2.1-2.1c0-1.2,0.9-2.1,2.1-2.1c1.1,0,2.1,0.9,2.1,2.1S10.5,11.4,9.4,11.4z M24.5,24.3	H21v-5.6c0-1.3,0-3.1-1.9-3.1c-1.9,0-2.1,1.5-2.1,2.9v5.7h-3.5V13h3.3v1.5h0.1c0.5-0.9,1.7-1.9,3.4-1.9c3.6,0,4.3,2.4,4.3,5.5V24.3z"/></svg>
+        </a>
+        <a href="https://x.com/mindtruthscom" aria-label="Mindtruths on X" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="m18.2342,14.1624l8.7424-10.1624h-2.0717l-7.591,8.8238-6.0629-8.8238h-6.9929l9.1684,13.3432-9.1684,10.6568h2.0718l8.0163-9.3183,6.4029,9.3183h6.9929l-9.5083-13.8376h.0005Zm-2.8376,3.2984l-.9289-1.3287L7.0763,5.5596h3.1822l5.9649,8.5323.9289,1.3287,7.7536,11.0907h-3.1822l-6.3272-9.05v-.0005Z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/mindtruthscom" aria-label="Mindtruths on Facebook" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M26.67,4H5.33A1.34,1.34,0,0,0,4,5.33V26.67A1.34,1.34,0,0,0,5.33,28H16.82V18.72H13.7V15.09h3.12V12.42c0-3.1,1.89-4.79,4.67-4.79.93,0,1.86,0,2.79.14V11H22.37c-1.51,0-1.8.72-1.8,1.77v2.31h3.6l-.47,3.63H20.57V28h6.1A1.34,1.34,0,0,0,28,26.67V5.33A1.34,1.34,0,0,0,26.67,4Z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@mindtruthscom" aria-label="Mindtruths on YouTube" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M29.41,9.26a3.5,3.5,0,0,0-2.47-2.47C24.76,6.2,16,6.2,16,6.2s-8.76,0-10.94.59A3.5,3.5,0,0,0,2.59,9.26,36.13,36.13,0,0,0,2,16a36.13,36.13,0,0,0,.59,6.74,3.5,3.5,0,0,0,2.47,2.47C7.24,25.8,16,25.8,16,25.8s8.76,0,10.94-.59a3.5,3.5,0,0,0,2.47-2.47A36.13,36.13,0,0,0,30,16,36.13,36.13,0,0,0,29.41,9.26ZM13.2,20.2V11.8L20.47,16Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="footer-col">
+      <div class="footer-col__title">Product</div>
+      <a href="#/how-it-works" data-route="/how-it-works">How it works</a>
+      <a href="#/get-started" data-route="/get-started">Get started</a>
+      <a href="#/for-clinicians" data-route="/for-clinicians">For clinicians</a>
+    </nav>
+    <nav class="footer-col">
+      <div class="footer-col__title">Company</div>
+      <a href="#/get-notified" data-route="/get-notified">Get notified</a>
+      <a href="#/request-access" data-route="/request-access">Request early access</a>
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <p class="footer-note"><strong>Mindtruths does not provide crisis support.</strong> If you are in crisis or thinking about suicide, call or text 988 (Suicide &amp; Crisis Lifeline) or go to your nearest emergency room.</p>
+    <p class="footer-copyright">© 2026 Mindtruths. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var routes = ['/', '/how-it-works', '/get-started', '/for-clinicians', '/request-access', '/get-notified'];
+
+  function currentRoute() {
+    var hash = window.location.hash.replace(/^#/, '');
+    return routes.indexOf(hash) === -1 ? '/' : hash;
+  }
+
+  function render() {
+    var route = currentRoute();
+    routes.forEach(function (r) {
+      var page = document.getElementById('page-' + r);
+      if (page) page.classList.toggle('active', r === route);
+    });
+    document.querySelectorAll('.navlink').forEach(function (link) {
+      link.classList.toggle('active', link.getAttribute('data-route') === route);
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+
+  window.addEventListener('hashchange', render);
+  render();
+
+  function wireNetlifyForm(formId, confirmId) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var body = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).catch(function () {});
+      form.hidden = true;
+      document.getElementById(confirmId).hidden = false;
+    });
+  }
+  wireNetlifyForm('request-access-form', 'request-access-confirm');
+  wireNetlifyForm('get-notified-form', 'get-notified-confirm');
+})();
+</script>
+
+</body></html>
