@@ -233,6 +233,7 @@
     border-bottom: 2px solid transparent;
   }
   .site-nav a.navlink:hover { color: var(--color-text); }
+  .site-nav__links-cta { display: none; }
   .site-nav a.navlink.active { color: var(--color-text); border-bottom-color: var(--brand-teal); }
   .nav-toggle {
     display: none;
@@ -541,7 +542,8 @@
     }
     .site-nav__links.is-open { display: flex; }
     .site-nav__links a.navlink { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
-    .site-nav__links a.navlink:last-child { border-bottom: none; }
+    .site-nav__links-cta { display: inline-flex; margin-top: var(--space-3); align-self: flex-start; }
+    .site-nav__header-cta { display: none; }
     .nav-toggle { display: inline-flex; }
     .hero h1 { font-size: var(--text-3xl); }
   }
@@ -573,8 +575,9 @@
         <a href="#/how-it-works" class="navlink" data-route="/how-it-works">How it works</a>
         <a href="#/get-started" class="navlink" data-route="/get-started">Get started</a>
         <a href="#/for-clinicians" class="navlink" data-route="/for-clinicians">For clinicians</a>
+        <a href="#/get-notified" class="btn btn--primary site-nav__links-cta" data-route="/get-notified">Get notified</a>
       </div>
-      <a href="#/get-notified" class="btn btn--primary">Get notified</a>
+      <a href="#/get-notified" class="btn btn--primary site-nav__header-cta">Get notified</a>
       <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav-links">
         <svg class="nav-toggle__icon nav-toggle__icon--open" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M4 6H28V8H4z"/><path d="M4 24H28V26H4z"/><path d="M4 12H28V14H4z"/><path d="M4 18H28V20H4z"/></svg>
         <svg class="nav-toggle__icon nav-toggle__icon--close" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"/></svg>
