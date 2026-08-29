@@ -234,7 +234,22 @@
   }
   .site-nav a.navlink:hover { color: var(--color-text); }
   .site-nav a.navlink.active { color: var(--color-text); border-bottom-color: var(--brand-teal); }
-  .nav-toggle { display: none; }
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .nav-toggle__icon--close { display: none; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon--open { display: none; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon--close { display: block; }
 
   .btn {
     display: inline-flex;
@@ -511,7 +526,23 @@
     .way-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 680px) {
-    .site-nav__links { display: none; }
+    .site-header { position: relative; }
+    .site-nav__links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-2) var(--container-gutter) var(--space-4);
+    }
+    .site-nav__links.is-open { display: flex; }
+    .site-nav__links a.navlink { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+    .site-nav__links a.navlink:last-child { border-bottom: none; }
+    .nav-toggle { display: inline-flex; }
     .hero h1 { font-size: var(--text-3xl); }
   }
 
@@ -521,7 +552,6 @@
 </style>
 </head>
 <body>
-
 <header class="site-header">
   <div class="container">
     <a href="#/" class="wordmark" data-route="/">
@@ -538,13 +568,17 @@
       <span><span class="wordmark__mind">mind</span><span class="wordmark__truths">truths</span></span>
     </a>
     <nav class="site-nav">
-      <div class="site-nav__links">
+      <div class="site-nav__links" id="site-nav-links">
         <a href="#/" class="navlink" data-route="/">Home</a>
         <a href="#/how-it-works" class="navlink" data-route="/how-it-works">How it works</a>
         <a href="#/get-started" class="navlink" data-route="/get-started">Get started</a>
         <a href="#/for-clinicians" class="navlink" data-route="/for-clinicians">For clinicians</a>
       </div>
       <a href="#/get-notified" class="btn btn--primary">Get notified</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav-links">
+        <svg class="nav-toggle__icon nav-toggle__icon--open" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M4 6H28V8H4z"/><path d="M4 24H28V26H4z"/><path d="M4 12H28V14H4z"/><path d="M4 18H28V20H4z"/></svg>
+        <svg class="nav-toggle__icon nav-toggle__icon--close" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M17.4141 16 24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"/></svg>
+      </button>
     </nav>
   </div>
 </header>
@@ -716,8 +750,7 @@
         <p style="font-size:var(--text-lg); color:var(--color-text-muted); margin-top:var(--space-4); max-width:36rem;">You can use Mindtruths on your own or with your care provider. Same science, same suggestions, same personalization. Choose a path to join.</p>
         <div class="way-grid" style="margin-top:var(--space-7);">
           <div class="way-card way-card--core" style="padding: var(--space-8);">
-            <div class="way-card__eyebrow">Core</div>
-            <h3 style="font-size:var(--text-3xl);">On your own</h3>
+            <h3 style="font-size:var(--text-3xl);">Self-guided</h3>
             <div class="way-card__facts">
               <span>No prescription</span><span>No waitlist</span><span>No hook</span>
             </div>
@@ -726,8 +759,7 @@
             <a href="#/get-notified" class="btn btn--primary" style="align-self:flex-start; margin-top:auto;">Get notified</a>
           </div>
           <div class="way-card way-card--joined" style="padding: var(--space-8);">
-            <div class="way-card__eyebrow">Joined</div>
-            <h3 style="font-size:var(--text-3xl);">With your care provider</h3>
+            <h3 style="font-size:var(--text-3xl);">With your therapist</h3>
             <div class="way-card__facts">
               <span>Clinician-linked</span><span>Care between sessions</span>
             </div>
@@ -744,11 +776,11 @@
     <section style="padding-top: var(--space-9);">
       <div class="container">
         <div class="section-head">
-          <div class="eyebrow">Why choose Joined</div>
+          <div class="eyebrow">Why Mindtruths</div>
           <h2>The week your patient lives in, visible to you.</h2>
           <p>Mindtruths gives your patient support during the other 167 hours of the week outside of your sessions. Invite a patient into Joined from your dashboard to integrate their experience with your care and gain insight. Here's what that changes about what you can see and do.</p>
         </div>
-        <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="card-grid">
           <div class="feature-card">
             <div class="feature-card__icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M4.67,28l6.39-12,7.3,6.49a2,2,0,0,0,1.7.47,2,2,0,0,0,1.42-1.07L27,10.9,25.18,10,19.69,21l-7.3-6.49A2,2,0,0,0,10.71,14a2,2,0,0,0-1.42,1L4,25V2H2V28a2,2,0,0,0,2,2H30V28Z"/></svg>
@@ -969,7 +1001,25 @@
     document.querySelectorAll('.navlink').forEach(function (link) {
       link.classList.toggle('active', link.getAttribute('data-route') === route);
     });
+    closeNavMenu();
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('site-nav-links');
+
+  function closeNavMenu() {
+    if (!navToggle || !navLinks) return;
+    navToggle.setAttribute('aria-expanded', 'false');
+    navLinks.classList.remove('is-open');
+  }
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!isOpen));
+      navLinks.classList.toggle('is-open', !isOpen);
+    });
   }
 
   window.addEventListener('hashchange', render);
