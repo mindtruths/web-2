@@ -13,11 +13,11 @@
     --brand-teal-deep: #376539;
     --brand-teal-deeper: #224d25;
     --brand-teal-wash: #e0ede0;
-    --brand-near-black: #3a1e2e;
+    --brand-near-black: #000000;
 
-    --dtx-navy: var(--brand-near-black);
+    --dtx-navy: #7d5a8c;
     --dtx-navy-soft: #a2778f;
-    --dtx-navy-wash: #f5e7ee;
+    --dtx-navy-wash: #ece6ee;
 
     --core-wash: #e0ede0;
 
@@ -31,7 +31,7 @@
     --neutral-600: #53464d;
     --neutral-700: #472c39;
     --neutral-800: #402437;
-    --neutral-900: #3a1e2e;
+    --neutral-900: #000000;
 
     --color-bg: var(--neutral-0);
     --color-bg-subtle: var(--neutral-50);
@@ -125,7 +125,7 @@
       --brand-teal-deep: #8fb98d;
       --brand-teal-wash: rgba(126, 164, 127, 0.14);
 
-      --dtx-navy: var(--color-text);
+      --dtx-navy: #d8b9de;
       --dtx-navy-soft: #d8b9de;
       --dtx-navy-wash: rgba(125, 90, 140, 0.18);
 
@@ -163,7 +163,7 @@
     --brand-teal-deep: #8fb98d;
     --brand-teal-wash: rgba(126, 164, 127, 0.14);
 
-    --dtx-navy: var(--color-text);
+    --dtx-navy: #d8b9de;
     --dtx-navy-soft: #d8b9de;
     --dtx-navy-wash: rgba(125, 90, 140, 0.18);
 
@@ -373,6 +373,9 @@
   }
   .feature-card h3 { font-size: var(--text-lg); }
   .feature-card p { color: var(--color-text-muted); margin-top: var(--space-2); font-size: var(--text-sm); }
+
+  #page-\/for-clinicians .eyebrow { color: var(--dtx-navy); }
+  #page-\/for-clinicians .feature-card__icon { background: var(--dtx-navy-wash); color: var(--dtx-navy); }
 
   /* ---------------- prose section ---------------- */
   .prose-block { max-width: var(--container-narrow); }
@@ -677,6 +680,39 @@
         <div class="prose-block" style="margin-top:var(--space-6);">
           <p>We started with the research: which behavioral and environmental factors keep depressive symptoms going, and which ones help build well-being. From there, we drew on gold-standard, well-validated treatments that target exactly those factors.</p>
           <p>The result is a system that turns clinical science into suggestions that work on your schedule, for your life.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">What we ask of you</div>
+          <h2>A few minutes a day, and it gets easier.</h2>
+          <p>Here's exactly what using Mindtruths looks like day to day.</p>
+        </div>
+        <div class="card-grid">
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M14 20.18 10.41 16.59 9 18 14 23 23 14 21.59 12.58 14 20.18z"/><path d="M25,5H22V4a2,2,0,0,0-2-2H12a2,2,0,0,0-2,2V5H7A2,2,0,0,0,5,7V28a2,2,0,0,0,2,2H25a2,2,0,0,0,2-2V7A2,2,0,0,0,25,5ZM12,4h8V8H12ZM25,28H7V7h3v3H22V7h3Z"/></svg>
+            </div>
+            <h3>Four brief check-ins a day</h3>
+            <p>We ask a few short questions, four times a day, to learn your patterns. The more we learn about you, the shorter check-ins get.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M22,8H21V2H19V8H13V2H11V8H10a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h1v6h2V24h6v6h2V24h1a2,2,0,0,0,2-2V10A2,2,0,0,0,22,8ZM10,22V10H22V22Z"/><path d="M25 14H27V18H25z"/></svg>
+            </div>
+            <h3>Connect a watch or your phone</h3>
+            <p>Link a wearable, or just your phone, and your sleep and activity come in automatically. That means fewer questions for you to answer.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M11 24H21V26H11z"/><path d="M13 28H19V30H13z"/><path d="M16,2A10,10,0,0,0,6,12a9.19,9.19,0,0,0,3.46,7.62c1,.93,1.54,1.46,1.54,2.38h2c0-1.84-1.11-2.87-2.19-3.86A7.2,7.2,0,0,1,8,12a8,8,0,0,1,16,0,7.2,7.2,0,0,1-2.82,6.14c-1.07,1-2.18,2-2.18,3.86h2c0-.92.53-1.45,1.54-2.39A9.18,9.18,0,0,0,26,12,10,10,0,0,0,16,2Z"/></svg>
+            </div>
+            <h3>Insights in as little as 2 minutes</h3>
+            <p>Most insights take two minutes or less to read. When you have more time, optional modules go deeper, at 10 to 15 minutes each.</p>
+          </div>
         </div>
       </div>
     </section>
